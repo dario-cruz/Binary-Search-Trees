@@ -56,7 +56,8 @@ function merge(left, right) {
             rightCounter++
         }
     }
-    // Add the remaining elements fom sub arrays.
+    // Add the remaining elements fom sub arrays after on of the left or the right
+    // sub arrays is exhausted. 
     while (leftCounter < left.length) {
         resultArray.push(left[leftCounter])
         leftCounter++
@@ -65,6 +66,6 @@ function merge(left, right) {
         resultArray.push(right[rightCounter])
         rightCounter++
     }
-
+    // Return the completely sorted array. 
     return resultArray
 }
