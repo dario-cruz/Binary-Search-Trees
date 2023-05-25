@@ -17,6 +17,54 @@ class tree {
     // Write a function which takes an array of data and turns it into a balanced binary tree,
     // full of Node objects.
     buildTree() {
-        this.givenArray
+        let mid = this.givenArray.length / 2
+        this.treeRoot = this.givenArray[mid]
+
     }
+}
+
+
+// Arrays given as arguments may be un-sorted so lets sort them using mergeSort.
+function mergeSort(providedArray) {
+    // If the array is empty or consists of only one element return it.
+    // We can't sort it. 
+    if (providedArray.length <= 1) {
+        return providedArray 
+    }
+    // Find the middle of the array and store it.
+    let mid = Math.floor(providedArray.length / 2)
+    // Recursively divide the array still we can't divide no more. 
+    let left = mergeSort(providedArray.slice(0, mid))
+    let right = mergeSort(providedArray.slice(mid))
+
+    // Merge the halves in a sorted manner.
+    return 
+}
+
+function merge(left, right) {
+    let resultArray = []
+    // Counters for when we run through the array halves.
+    let rightCounter = 0
+    let leftCounter = 0
+    // Compare elements from sub arrays.
+    while (leftCounter < left.length && rightCounter < right.length) {
+        if (left[leftCounter] <= right[rightCounter]) {
+            resultArray.push(left[leftCounter])
+            leftCounter++
+        } else {
+            resultArray.push(right[rightCounter])
+            rightCounter++
+        }
+    }
+    // Add the remaining elements fom sub arrays.
+    while (leftCounter < left.length) {
+        resultArray.push(left[leftCounter])
+        leftCounter++
+    }
+    while (rightCounter < right.length) {
+        resultArray.push(right[rightCounter])
+        rightCounter++
+    }
+
+    return resultArray
 }
