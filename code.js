@@ -17,9 +17,13 @@ class tree {
     // Write a function which takes an array of data and turns it into a balanced binary tree,
     // full of Node objects.
     buildTree() {
+        // Sort the givenArray in sequential order. 
+        this.givenArray = mergeSort(this.givenArray)
+
+        // Process the array and find the mid and root of the Binary Search Tree.
         let mid = this.givenArray.length / 2
         this.treeRoot = this.givenArray[mid]
-
+        
     }
 }
 
