@@ -28,13 +28,27 @@ class tree {
         }
         // Find and store mid point so that we may reference it on recursive call.
         let mid = Math.floor((start + end) / 2)
-
+        // Create the new node which will be the center of the start and mid points.
         let node = new treeNode(this.givenArray[mid])
         // Recursive iteration through array to build tree nodes and children.
         treeNode.leftChild = this.processData(this.givenArray. start, mid - 1)
         treeNode.rightChild = this.processData(this.givenArray, mid + 1, end)
         // Return the node with its children.
         return treeNode
+    }
+    search(term) {
+        // If the tree has not been built yet then return null
+        if (this.root === null) {
+            console.log('Oooops looks like the item was not found.')
+            return null
+        } 
+
+        function lookForItem(term) {
+            if (this.root.inputData < term) {
+                
+            }
+        }
+
     }
 }
 
