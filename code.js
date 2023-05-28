@@ -11,19 +11,30 @@ class treeNode {
 // The Tree class should have a root attribute which uses the return value of buildTree which you’ll write next.
 class tree {
     constructor(givenArray) {
-        this.givenArray = givenArray
+        // Sort the givenArray in sequential order. 
+        this.givenArray = mergeSort(this.givenArray)
         this.treeRoot = null
     }
     // Write a function which takes an array of data and turns it into a balanced binary tree,
     // full of Node objects.
     buildTree() {
-        // Sort the givenArray in sequential order. 
-        this.givenArray = mergeSort(this.givenArray)
-
         // Process the array and find the mid and root of the Binary Search Tree.
-        let mid = this.givenArray.length / 2
-        this.treeRoot = this.givenArray[mid]
-        
+        this.root = this.processData(this.givenArray, 0, this.givenArray.length - 1)
+    }
+    processData(array, start, end) {
+        // Iterate through all of the elements of the array and create the tree based on the array data. 
+        if (start > end) {
+            return null
+        }
+        // Find and store mid point so that we may reference it on recursive call.
+        let mid = Math.floor((start + end) / 2)
+
+        let node = new treeNode(this.givenArray[mid])
+        // Recursive iteration through array to build tree nodes and children.
+        treeNode.leftChild = this.processData(this.givenArray. start, mid - 1)
+        treeNode.rightChild = this.processData(this.givenArray, mid + 1, end)
+        // Return the node with its children.
+        return treeNode
     }
 }
 
@@ -31,7 +42,7 @@ class tree {
 // Arrays given as arguments may be un-sorted so lets sort them using mergeSort.
 function mergeSort(providedArray) {
     // If the array is empty or consists of only one element return it.
-    // We can't sort it. 
+    // We can't sort it obviously due to only one item or no data... 
     if (providedArray.length <= 1) {
         return providedArray 
     }
