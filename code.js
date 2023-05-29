@@ -41,14 +41,18 @@ class tree {
         if (this.root === null) {
             console.log('Oooops looks like the item was not found.')
             return null
-        } 
-
-        function lookForItem(term) {
-            if (this.root.inputData < term) {
-                
-            }
+        } else {
+            recursiveSearchPattern(this.root)
         }
 
+        function recursiveSearchPattern(node) {
+            if (node.inputData === term) {
+                return node
+            } else {
+                recursiveSearchPattern(node.leftChild)
+                recursiveSearchPattern(node.rightChild)
+            }
+        }
     }
 }
 
