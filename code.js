@@ -14,27 +14,31 @@ class tree {
         // Sort the givenArray in sequential order. 
         this.givenArray = mergeSort(this.givenArray)
         this.treeRoot = null
+        this.buildStatus = false
     }
     // Write a function which takes an array of data and turns it into a balanced binary tree,
     // full of Node objects.
     buildTree() {
         // Process the array and find the mid and root of the Binary Search Tree.
-        this.root = this.processData(this.givenArray, 0, this.givenArray.length - 1)
-    }
-    processData(array, start, end) {
-        // Iterate through all of the elements of the array and create the tree based on the array data. 
-        if (start > end) {
-            return null
+        this.root = processData(this.givenArray, 0, this.givenArray.length - 1)
+        // After tree is built update buildstatus value.
+        this.buildStatus = true
+
+        function processData(array, start, end) {
+            // Iterate through all of the elements of the array and create the tree based on the array data. 
+            if (start > end) {
+                return null
+            }
+            // Find and store mid point so that we may reference it on recursive call.
+            let mid = Math.floor((start + end) / 2)
+            // Create the new node which will be the center of the start and mid points.
+            let node = new treeNode(this.givenArray[mid])
+            // Recursive iteration through array to build tree nodes and children.
+            treeNode.leftChild = this.processData(this.givenArray. start, mid - 1)
+            treeNode.rightChild = this.processData(this.givenArray, mid + 1, end)
+            // Return the node with its children.
+            return treeNode
         }
-        // Find and store mid point so that we may reference it on recursive call.
-        let mid = Math.floor((start + end) / 2)
-        // Create the new node which will be the center of the start and mid points.
-        let node = new treeNode(this.givenArray[mid])
-        // Recursive iteration through array to build tree nodes and children.
-        treeNode.leftChild = this.processData(this.givenArray. start, mid - 1)
-        treeNode.rightChild = this.processData(this.givenArray, mid + 1, end)
-        // Return the node with its children.
-        return treeNode
     }
     search(term) {
         // If the tree has not been built yet then return null
@@ -44,15 +48,21 @@ class tree {
         } else {
             recursiveSearchPattern(this.root)
         }
-
+        // Recursive func for searching through BST.
+        // Compares the search term and then iterates through the tree.
         function recursiveSearchPattern(node) {
             if (node.inputData === term) {
                 return node
-            } else {
+            } else if (term < node.inputData) {
                 recursiveSearchPattern(node.leftChild)
+            } else {
                 recursiveSearchPattern(node.rightChild)
             }
         }
+    }
+    
+    insert(term) {
+        
     }
 }
 
