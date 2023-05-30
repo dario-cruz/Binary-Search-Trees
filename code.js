@@ -62,7 +62,33 @@ class tree {
     }
     
     insert(term) {
-        
+        // Create an error condition in case the given data is not present or is not a number.
+        if (term === null || term === undefined || isNaN(term) == true) {
+            console.log('Given arg is not a number or was not given.... Try again.')
+            return
+        } else {
+            // Recursively search for proper leaf and insert new value.
+            compareAndInsert(this.root)
+        }
+        // Recursive function for insertion of new data elements in tree. 
+        function compareAndInsert(node) {
+            // if the given number is less then the node data and the node left child is not null continue to look for proper position.
+            if (term < node.inputData && node.leftChild !== null) {
+                compareAndInsert(node.leftChild)
+            // if the given number is greater then the node data and the node right child is not null continue to look for proper position.
+            } else if (term > node.inputData && node.rightChild !== null ) {
+                compareAndInsert(node.rightChild)
+            // if the given num is less and the node has no children insert.
+            } else if (term < node.inputData && node.leftChild == null) {
+                node.leftChild = new node(term)
+            // if the given num is more and the node has no children insert.
+            } else if (term > node.inputData && node.rightChild == null) {
+                node.rightChild = new node(term)
+            } else {
+                console.log('Huh, not sure how we got here.... Fix the code bruh.')
+                return
+            }
+        }
     }
 }
 
