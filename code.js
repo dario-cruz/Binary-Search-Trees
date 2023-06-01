@@ -90,6 +90,34 @@ class tree {
             }
         }
     }
+
+    delete(term) {
+        // Create an error condition in case the given data is not present or is not a number.
+        if (term == null || term === undefined || isNaN(term) == true) {
+            console.log('Given arg is not a number or was not given.... Try again.')
+            return
+        } else {
+
+        }
+
+        function deleteTheNode(node) {
+            // if node to be removed has no children, this delete that thang.
+            if (node.inputData == term && node.leftChild == null && node.rightChild == null) {
+                
+            } 
+        }
+
+        function searchForChild(term, node) {
+            if (node.leftChild == term) {
+                return node
+            } else if (node.rightChild == term) {
+                return node
+            } else {
+                searchForChild(term, node.rightChild)
+                searchForChild(term, node.leftChild)
+            }
+        }
+    }
 }
 
 
