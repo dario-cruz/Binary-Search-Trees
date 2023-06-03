@@ -97,14 +97,22 @@ class tree {
             console.log('Given arg is not a number or was not given.... Try again.')
             return
         } else {
+            // Search for the node to be deleted and store as variable. 
+            let foundNode = this.search(term)
 
         }
 
         function deleteTheNode(node) {
-            // if node to be removed has no children, this delete that thang.
+            // if node to be removed has no children, this delete that thang!
             if (node.inputData == term && node.leftChild == null && node.rightChild == null) {
+
+            } else if (node.inputData == term && node.leftChild !== null && node.rightChild == null) {
+                // if the node has only one child then replace the node with the child.
+                node.inputData = node.leftChild
+            } else if (node.inputData == term && node.leftChild == null && node.rightChild !== null) {
+                // if the node has only one child then replace the node with the child.
                 
-            } 
+            }
         }
 
         function searchForChild(term, node) {
