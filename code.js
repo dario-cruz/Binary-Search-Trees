@@ -93,14 +93,24 @@ class tree {
 
     delete(term) {
         // Create an error condition in case the given data is not present or is not a number.
-        if (term == null || term === undefined || isNaN(term) == true) {
-            console.log('Given arg is not a number or was not given.... Try again.')
+        if (term == null || term === undefined || isNaN(term) == true || this.buildStatus == false) {
+            console.log('Given arg is not a number or was not given or the tree has not been built yet.... Try again.')
             return
-        } else {
+        // Recursively check for the given search term. 
+        } else if (term < this.root.inputData) {
+            // If the search term is less then the roots inputData. Recursively traverse the right sub-tree.
+            this.root.leftChild = this.delete(term)
+        } else if (term > this.root.inputData) {
+            // If the search term is greater then the roots inputData. Recursively traverse the left sub-tree. 
+            this.root.rightChild = this.delete(term)
+        }   else {
+            let nodetoDelete 
+            if ( this.root.rightChild == null) {
 
+            }
         }
 
-        function deleteTheNode(node) {
+        function deleteTheNode(tree, term) {
             // if node to be removed has no children, this delete that thang.
             if (node.inputData == term && node.leftChild == null && node.rightChild == null) {
                 
@@ -108,9 +118,7 @@ class tree {
         }
 
         function searchForChild(term, node) {
-            if (node.leftChild == term) {
-                return node
-            } else if (node.rightChild == term) {
+            if (node.leftChild == term || node.right == term) {
                 return node
             } else {
                 searchForChild(term, node.rightChild)
