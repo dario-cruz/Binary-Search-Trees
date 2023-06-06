@@ -91,21 +91,36 @@ class tree {
         }
     }
 
-    delete(term) {
+    // Create a class method that will check to see if the valueToInspect is a leaf node.
+    isLeadNode(valueToInspect) {
+        
+    }
+
+    findMinRight(node) {
+        
+    }
+    
+    findMinLeft(node) {
+        
+    }
+
+
+    delete(term, node = this.root) {
         // Create an error condition in case the given data is not present or is not a number.
-        if (term == null || term === undefined || isNaN(term) == true || this.buildStatus == false) {
+        if (term == null || term === undefined || isNaN(term) == true || node == false) {
             console.log('Given arg is not a number or was not given or the tree has not been built yet.... Try again.')
             return
         // Recursively check for the given search term. 
-        } else if (term < this.root.inputData) {
+        } else if (term < node.inputData) {
             // If the search term is less then the roots inputData. Recursively traverse the right sub-tree.
-            this.root.leftChild = this.delete(term)
-        } else if (term > this.root.inputData) {
+            node.leftChild = this.delete(term)
+        } else if (term > node.inputData) {
             // If the search term is greater then the roots inputData. Recursively traverse the left sub-tree. 
-            this.root.rightChild = this.delete(term)
-        }   else {
-            let nodetoDelete 
-            if ( this.root.rightChild == null) {
+            node.rightChild = this.delete(term)
+        } else {
+            if (node.rightChild == null && node.leftChild == null) {
+                nodeToDelete = node
+
 
             }
         }
