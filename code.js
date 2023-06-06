@@ -113,8 +113,14 @@ class tree {
         function deleteTheNode(tree, term) {
             // if node to be removed has no children, this delete that thang.
             if (node.inputData == term && node.leftChild == null && node.rightChild == null) {
+
+            } else if (node.inputData == term && node.leftChild !== null && node.rightChild == null) {
+                // if the node has only one child then replace the node with the child.
+                node.inputData = node.leftChild
+            } else if (node.inputData == term && node.leftChild == null && node.rightChild !== null) {
+                // if the node has only one child then replace the node with the child.
                 
-            } 
+            }
         }
 
         function searchForChild(term, node) {
