@@ -92,8 +92,13 @@ class tree {
     }
 
     // Create a class method that will check to see if the valueToInspect is a leaf node.
-    isLeadNode(valueToInspect) {
-        
+    isLeafNode(valueToInspect) {
+        let foundNode = this.search(valueToInspect)
+        if (foundNode.rightChild == null && foundNode.leftChild == null) {
+            return true
+        } else {
+            return false
+        }
     }
     
     // Create a method that will traverse the left side of the bst for the min value. 
@@ -110,7 +115,7 @@ class tree {
     // Do the same traversal for the right side of the the bst. 
     findMinRight(node = this.root) {
         if (node.rightChild !== null) {
-            // We recursively search the leftChild because the lower values are always on the leftside of any tree.
+            // We recursively search the leftChild because the lower values are always on the leftside of any tree and or sub-tree.
             this.findMinRight(node.leftChild)
         } else {
             return node
