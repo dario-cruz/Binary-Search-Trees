@@ -95,15 +95,28 @@ class tree {
     isLeadNode(valueToInspect) {
         
     }
-
-    findMinRight(node) {
-        
+    
+    // Create a method that will traverse the left side of the bst for the min value. 
+    findMinLeft(node = this.root) {
+        // If the leftChild is not empty keep digging deeper. 
+        if(node.leftChild !== null) {
+            this.findMinLeft(node.leftChild)
+        } else {
+            // If the leftChild is null, then we have reached the end of the left tree. 
+            // Return the value of this node because it's the min value that we have found. 
+            return node
+        }
+    }
+    // Do the same traversal for the right side of the the bst. 
+    findMinRight(node = this.root) {
+        if (node.rightChild !== null) {
+            // We recursively search the leftChild because the lower values are always on the leftside of any tree.
+            this.findMinRight(node.leftChild)
+        } else {
+            return node
+        }
     }
     
-    findMinLeft(node) {
-        
-    }
-
 
     delete(term, node = this.root) {
         // Create an error condition in case the given data is not present or is not a number.
