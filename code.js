@@ -171,6 +171,10 @@ class tree {
             if (node.hasChildren() == false ) {
                 // Delete the node. 
                 node.deleteSelf()
+                // Find the parent node of the one delete.
+                parentNode = searchForChild(term)
+                // Based on which child matchs the deleted note, set it to null.
+                parentNode.rightChild == term ? parentNode.rightChild == null : parentNode.leftChild == null
             } else if (node.hadRightChild() == true && node.rightChild.hasChildren == false) {
                 node = node.leftChild
             } else if (node.hasLeftChild() == true && node.leftChild.hasChildren() == false) {
