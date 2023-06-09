@@ -167,10 +167,11 @@ class tree {
             // If the search term is greater then the roots inputData. Recursively traverse the left sub-tree. 
             node.rightChild = this.delete(term)
         } else {
+            // if root has no children or only one child.
             if (node.rightChild == null || node.leftChild == null || (node.leftChild !== null && node.leftChild.leftChild == null && node.leftChild.rightChild)) {
                 // Remove the reference to the node.
                 let parentNode = searchForChild(node)
-                parentNode.leftChild == node ? parentNode.leftChild == null : 
+                // parentNode.leftChild == node ? parentNode.leftChild == null : 
     
 
 
