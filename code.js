@@ -140,7 +140,7 @@ class tree {
         } else {
             // If the leftChild is null, then we have reached the end of the left tree. 
             // Return the value of this node because it's the min value that we have found. 
-            return node
+            return node.inputData
         }
     }
     // Do the same traversal for the right side of the the bst. 
@@ -149,7 +149,7 @@ class tree {
             // We recursively search the leftChild because the lower values are always on the leftside of any tree and or sub-tree.
             this.findMinRight(node.leftChild)
         } else {
-            return node
+            return node.inputData
         }
     }
     
@@ -180,7 +180,12 @@ class tree {
             } else if (node.hasLeftChild() == true && node.leftChild.hasChildren() == false) {
                 node = node.rightChild
             } else {
-                // Node must have multiple children. 
+                // Node must have multiple children.
+                
+                minValue = this.findMinRight(node.rightChild)
+                node.inputData = minValue
+                // Delete the node with the minimum value from right. 
+                
             }
         }
 
