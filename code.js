@@ -5,6 +5,20 @@ class treeNode {
         this.leftChild
         this.rightChild
     }
+    // Create a method that checks to see if the node has children. 
+    hasChildren() {
+        if  (!this.leftChild && !this.rightChild) {
+            return false
+        } else {
+            return true
+        }
+    }
+    // Create a method so a node can be deleted.
+    deleteSelf() {
+        this.inputData = null
+        this.leftChild = null
+        this.rightChild = null
+    }
 }
 
 // Build a Tree class / factory which accepts an array when initialized. 
@@ -136,7 +150,7 @@ class tree {
             // If the search term is greater then the roots inputData. Recursively traverse the left sub-tree. 
             node.rightChild = this.delete(term)
         } else {
-            if (node.rightChild == null && node.leftChild == null) {
+            if (node.rightChild == null || node.leftChild == null || (node.leftChild !== null && node.leftChild.leftChild == null && node.leftChild.rightChild)) {
                 // Remove the reference to the node.
                 let parentNode = searchForChild(node)
                 parentNode.leftChild == node ? parentNode.leftChild == null : 
