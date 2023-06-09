@@ -13,6 +13,23 @@ class treeNode {
             return true
         }
     }
+
+    // Methods for checking child status's
+    hadRightChild() {
+        if (!this.rightChild) {
+            return false
+        } else {
+            return true
+        }
+    }
+    hasLeftChild() {
+        if (!this.leftChild) {
+            return  false
+        } else {
+            return true
+        }
+    }
+
     // Create a method so a node can be deleted.
     deleteSelf() {
         this.inputData = null
