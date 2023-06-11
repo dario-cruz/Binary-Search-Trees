@@ -153,7 +153,7 @@ class tree {
         }
     }
     
-
+    // Create a class method that allows for the deletion of a node regardless of if it has a child or not.
     delete(term, node = this.root) {
         // Create an error condition in case the given data is not present or is not a number.
         if (term == null || term === undefined || isNaN(term) == true || this.buildStatus == false) {
