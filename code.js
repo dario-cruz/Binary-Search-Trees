@@ -181,18 +181,17 @@ class tree {
                 node = node.rightChild
             } else {
                 // Node must have multiple children.
-                
                 minValue = this.findMinRight(node.rightChild)
                 node.inputData = minValue
                 // Delete the node with the minimum value from right. 
-                
+                node.rightChild = this.delete(minValue, node.rightChild)
             }
         }
-
+        
         function deleteTheNode(node = this.root, term) {
             // if node to be removed has no children, this delete that thang.
             if (node.inputData == term && node.leftChild == null && node.rightChild == null) {
-
+                
             } else if (node.inputData == term && node.leftChild !== null && node.rightChild == null) {
                 // if the node has only one child then replace the node with the child.
                 node.inputData = node.leftChild
@@ -201,7 +200,7 @@ class tree {
                 
             }
         }
-
+        
         function searchForChild(term, node = this.root) {
             if (node.leftChild == term || node.right == term) {
                 return node
@@ -210,6 +209,8 @@ class tree {
                 searchForChild(term, node.leftChild)
             }
         }
+        // Return the node at the end of everything. 
+        return node
     }
 }
 
