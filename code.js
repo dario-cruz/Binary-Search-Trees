@@ -212,6 +212,23 @@ class tree {
         // Return the node at the end of everything. 
         return node
     }
+
+    levelOrder() {
+
+    }
+
+    inOrder() {
+
+    }
+
+    preOrder() {
+        
+    }
+
+    postOrder() {
+
+    }
+
 }
 
 
