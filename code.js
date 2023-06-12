@@ -213,8 +213,19 @@ class tree {
         return node
     }
 
-    levelOrder() {
+    levelOrder(function, node = this.root) {
+        // Create a quque to manage all of the level order calls on the functions.
+        let orderQueue = []
+        if (!node) {
+            // If the given node is empty them return and console log a message for the user.
+            console.log('No node given, please provide some data to use.')
+            return
+        }
 
+        if(orderQueue.length >= 1) {
+            
+        }
+        
     }
 
     inOrder() {
@@ -276,4 +287,15 @@ function merge(left, right) {
     }
     // Return the completely sorted array. 
     return resultArray
+}
+
+// Create a function that allows for a visual representation of the BST to be logged in the console. 
+function printMyTree(node, prefix = '', isLeft = true) {
+    if (!node) {
+        console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exsist.')
+        return
+    }
+    if (node.rightChild !== null) {
+        printMyTree(node.rightChild, `${prefix}${isLeft ? }`)
+    }
 }
