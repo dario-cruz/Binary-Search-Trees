@@ -213,8 +213,8 @@ class tree {
         return node
     }
 
-    levelOrder(function, node = this.root) {
-        // Create a quque to manage all of the level order calls on the functions.
+    levelOrder(givenFunc, node = this.root) {
+        // Create a queue to manage all of the level order calls on the functions.
         let orderQueue = []
         if (!node) {
             // If the given node is empty them return and console log a message for the user.
