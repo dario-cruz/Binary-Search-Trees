@@ -296,6 +296,10 @@ function printMyTree(node, prefix = '', isLeft = true) {
         return
     }
     if (node.rightChild !== null) {
-        printMyTree(node.rightChild, `${prefix}${isLeft ? }`)
+        printMyTree(node.rightChild, `${prefix}${isLeft ? "|   " : "    "}`, false)
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.inputData}`)
+    if (node.leftChild !== null) {
+        printMyTree(node.leftChild, `${prefix}${isLeft ? "    " : "|   "}`, true)
     }
 }
