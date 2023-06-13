@@ -237,9 +237,24 @@ class tree {
         }
     }
 
-    inOrder() {
-
+    // In order traversal works by traversing the left tree first, then visiting the root again, then traversing all nodes on the right side of the tree.
+    inOrder(node = this.root, givenFunc) {
+        // Error condition if no data is found.
+        if (!node) {
+            console.log('Data not found in the given node.')
+            return
+        }
+        
+        // Run the give function on the current node. 
+        givenFunc(node.inputData)
+        
+        // From the root traverse the left side of the BST.
+        this.inOrder(node.leftChild)
+        
+        // From the root traverse the right side of the BST. 
+        this.inOrder(node.rightChild)
     }
+
 
     preOrder() {
         
