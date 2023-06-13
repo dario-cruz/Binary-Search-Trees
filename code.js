@@ -214,18 +214,27 @@ class tree {
     }
 
     levelOrder(givenFunc, node = this.root) {
-        // Create a queue to manage all of the level order calls on the functions.
-        let orderQueue = []
+        // Error condition for if the node does not exist or a arg is given with no data. 
         if (!node) {
             // If the given node is empty them return and console log a message for the user.
             console.log('No node given, please provide some data to use.')
             return
         }
-
-        if(orderQueue.length >= 1) {
-            
-        }
+        // Create a queue to manage all of the level order calls on the functions.
+        let orderQueue = []
+        orderQueue.push(node.inputData)
         
+        // While we have items in the queue, iterate through the logic.
+        while (orderQueue.length > 0) {
+            let currentNode = orderQueue.shift()
+            console.log(currentNode.inputData)
+            if (currentNode.leftChild) {
+                orderQueue.push(currentNode.leftChild)
+            }
+            if (currentNode.rightChild) {
+                orderQueue.push(rightChild)
+            }
+        }
     }
 
     inOrder() {
