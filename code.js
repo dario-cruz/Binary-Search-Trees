@@ -51,7 +51,7 @@ class tree {
     // full of Node objects.
     buildTree() {
         // Process the array and find the mid and root of the Binary Search Tree.
-        this.root = processData(this.givenArray, 0, this.givenArray.length - 1)
+        this.treeRoot = processData(this.givenArray, 0, this.givenArray.length - 1)
         // After tree is built update buildstatus value.
         this.buildStatus = true
 
@@ -73,11 +73,11 @@ class tree {
     }
     search(term) {
         // If the tree has not been built yet then return null
-        if (this.root === null) {
+        if (this.treeRoot === null) {
             console.log('Oooops looks like the item was not found.')
             return null
         } else {
-            recursiveSearchPattern(this.root)
+            recursiveSearchPattern(this.treeRoot)
         }
         // Recursive func for searching through BST.
         // Compares the search term and then iterates through the tree.
@@ -99,7 +99,7 @@ class tree {
             return
         } else {
             // Recursively search for proper leaf and insert new value.
-            compareAndInsert(this.root)
+            compareAndInsert(this.treeRoot)
         }
         // Recursive function for insertion of new data elements in tree. 
         function compareAndInsert(node) {
@@ -133,7 +133,7 @@ class tree {
     }
     
     // Create a method that will traverse the left side of the bst for the min value. 
-    findMinLeft(node = this.root) {
+    findMinLeft(node = this.treeRoot) {
         // If the leftChild is not empty keep digging deeper. 
         if(node.leftChild !== null) {
             this.findMinLeft(node.leftChild)
@@ -144,7 +144,7 @@ class tree {
         }
     }
     // Do the same traversal for the right side of the the bst. 
-    findMinRight(node = this.root) {
+    findMinRight(node = this.treeRoot) {
         if (node.rightChild !== null) {
             // We recursively search the leftChild because the lower values are always on the leftside of any tree and or sub-tree.
             this.findMinRight(node.leftChild)
@@ -154,7 +154,7 @@ class tree {
     }
     
     // Create a class method that allows for the deletion of a node regardless of if it has a child or not.
-    delete(term, node = this.root) {
+    delete(term, node = this.treeRoot) {
         // Create an error condition in case the given data is not present or is not a number.
         if (term == null || term === undefined || isNaN(term) == true || this.buildStatus == false) {
             console.log('Given arg is not a number or was not given or the tree has not been built yet.... Try again.')
@@ -188,7 +188,7 @@ class tree {
             }
         }
         
-        function deleteTheNode(node = this.root, term) {
+        function deleteTheNode(node = this.treeRoot, term) {
             // if node to be removed has no children, this delete that thang.
             if (node.inputData == term && node.leftChild == null && node.rightChild == null) {
                 
@@ -201,7 +201,7 @@ class tree {
             }
         }
         
-        function searchForChild(term, node = this.root) {
+        function searchForChild(term, node = this.treeRoot) {
             if (node.leftChild == term || node.right == term) {
                 return node
             } else {
@@ -213,7 +213,7 @@ class tree {
         return node
     }
 
-    levelOrder(givenFunc, node = this.root) {
+    levelOrder(givenFunc, node = this.treeRoot) {
         // Error condition for if the node does not exist or a arg is given with no data. 
         if (!node) {
             // If the given node is empty them return and console log a message for the user.
@@ -238,7 +238,7 @@ class tree {
     }
 
     // In order traversal works by traversing the left tree first, then visiting the root again, then traversing all nodes on the right side of the tree.
-    inOrder(node = this.root, givenFunc) {
+    inOrder(givenFunc, node = this.treeRoot) {
         // Error condition if no data is found.
         if (!node) {
             console.log('Data not found in the given node.')
