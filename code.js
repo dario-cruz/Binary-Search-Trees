@@ -235,6 +235,16 @@ class tree {
                 orderQueue.push(rightChild)
             }
         }
+        // For each item in the queue run the given function. 
+        if (!givenFunc) {
+            return
+        } else {
+            orderQueue.forEach(element => {
+                givenFunc(element)
+            })
+        }
+        // Return the orderQueue wether the func was run on it or not. 
+        return orderQueue
     }
 
     // In order traversal works by traversing the left tree first, then visiting the root again, then traversing all nodes on the right side of the tree.
