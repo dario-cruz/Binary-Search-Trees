@@ -248,7 +248,7 @@ class tree {
     }
 
     // In order traversal works by traversing the left tree first, then visiting the root again, then traversing all nodes on the right side of the tree.
-    inOrder(givenFunc, node = this.treeRoot) {
+    inOrder(node = this.treeRoot, givenFunc) {
         // Init the queue for all the values to be run on the func.
         let inOrderQueue = []
         
@@ -270,22 +270,36 @@ class tree {
                     processInOrder(node.rightChild)
                 }
             })(this.treeRoot)
-        }
-        // Run the give function on the current node.
-        if (!givenFunc) {
-            return
-        } else {
-            inOrderQueue.forEach(element => {
-                element = givenFunc(element)
-            })
+            
+            // Run the give function on the current node.
+            if (!givenFunc) {
+                return
+            } else {
+                inOrderQueue.forEach(element => {
+                    element = givenFunc(element)
+                })
+            }
         }
         // Return the modified queue. 
         return inOrderQueue
     }
 
-
-    preOrder() {
-        
+    // Create a method that traverses the BST in preOrder.
+    preOrder(node = this.treeRoot, givenFunc) {
+        let preOrderQueue = []
+        if (!node) {
+            return
+        } else {
+            preOrderQueue.push(node.inputData)
+            (function processPreOrder(node) {
+                if(!node) {
+                    return
+                } else if (node.leftChild !== null) {
+                    preOrderQueue.push(node.inputData)
+                    processPreOrder(node.leftChild)
+                }
+            })(this.treeRoot)
+        }
     }
 
     postOrder() {
