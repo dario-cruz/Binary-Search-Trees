@@ -294,12 +294,46 @@ class tree {
             (function processPreOrder(node) {
                 if(!node) {
                     return
-                } else if (node.leftChild !== null) {
+                } else {
+                    // Add the data at the root of the tree to the queue 
                     preOrderQueue.push(node.inputData)
-                    processPreOrder(node.leftChild)
+
+                    if (node.leftChild !== null) {
+                        (function processLeftSub(node){
+                            if (!node) {
+                                return
+                            } else {
+                                preOrderQueue.push(node.inputData)
+                                processLeftSub(node.leftChild)
+                                processLeftSub(node.rightChild)
+                            }
+                        })(node.leftChild)
+                    }
+                    
+                    if (node.rightChild !== null) {
+                        (function processRightSub() {
+                            if (!node) {
+                                return
+                            } else {
+                                preOrderQueue.push(node.inputData)
+                                processRightSub(node.leftChild)
+                                processRightSub(node.rightChild)
+                            }
+                        })(node.rightChild)
+                    }
                 }
             })(this.treeRoot)
+
+            // Run the function if it was given, on the preOrderQueue.
+            if (!givenFunc) {
+                return
+            } else {
+                preOrderQueue.forEach(element => {
+                    element = givenFunc(element)
+                })
+            }
         }
+        return preOrderQueue
     }
 
     postOrder() {
