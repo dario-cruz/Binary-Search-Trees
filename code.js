@@ -336,8 +336,32 @@ class tree {
         return preOrderQueue
     }
 
-    postOrder() {
-
+    postOrder(node = this.treeRoot, givenFunc) {
+        let postOrderQueue = []
+        if (!node) {
+            return
+        } else {
+            // Traverse the left sub tree.
+            (function processPostOrder(node) {
+                // Add the left and right children to the queue.
+                postOrderQueue.push(node.leftChild)
+                postOrderQueue.push(node.rightChild)
+                // Add the root node data to the queue. 
+                postOrderQueue.push(node.inputData)
+                // Recursively call the function on all other nodes. 
+                processPostOrder(node.leftChild)
+                processPostOrder(node.rightChild)
+            })(this.treeRoot)
+        }
+        if (!givenFunc) {
+            return
+        } else {
+            // Run the func on all of the array elements and update there values.
+            postOrderQueue.forEach(element => {
+                element = givenFunc(element)
+            })
+        }
+        return postOrderQueue
     }
 
 }
