@@ -249,20 +249,38 @@ class tree {
 
     // In order traversal works by traversing the left tree first, then visiting the root again, then traversing all nodes on the right side of the tree.
     inOrder(givenFunc, node = this.treeRoot) {
+        // Init the queue for all the values to be run on the func.
+        let inOrderQueue = []
+        
         // Error condition if no data is found.
         if (!node) {
             console.log('Data not found in the given node.')
             return
+        } else {
+            // Create Recursive functions that traverses and places the data in the queue.
+            (function processInOrder(node) {
+                if (!node) {
+                    return
+                } else {
+                    // Push the nodes data into the queue so that we can run funcs on it.
+                    inOrderQueue.push(node.inputData)
+                    // From the root traverse the left side of the BST.
+                    processInOrder(node.leftChild)
+                    // From the root traverse the right side of the BST. 
+                    processInOrder(node.rightChild)
+                }
+            })(this.treeRoot)
         }
-        
-        // Run the give function on the current node. 
-        givenFunc(node.inputData)
-        
-        // From the root traverse the left side of the BST.
-        this.inOrder(node.leftChild)
-        
-        // From the root traverse the right side of the BST. 
-        this.inOrder(node.rightChild)
+        // Run the give function on the current node.
+        if (!givenFunc) {
+            return
+        } else {
+            inOrderQueue.forEach(element => {
+                element = givenFunc(element)
+            })
+        }
+        // Return the modified queue. 
+        return inOrderQueue
     }
 
 
