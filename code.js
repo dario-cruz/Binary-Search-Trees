@@ -363,8 +363,8 @@ class tree {
         }
         return postOrderQueue
     }
-
-    findHeight(givenValue) {
+    // Create a method that takes a value and finds the node with matching data and returns the depth of the node.
+    findDepth(givenValue) {
         // Initialize a counter.
         let counterVar = -1
 
