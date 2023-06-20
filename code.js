@@ -364,6 +364,32 @@ class tree {
         return postOrderQueue
     }
 
+    findHeight(givenValue) {
+        // Initialize a counter.
+        let counterVar = -1
+
+        // Error condition if tree has not been built yet.
+        if (!this.treeRoot) {
+            console.log('Tree not built yet. Build the tree so you can find the height!')
+            return
+        } else {
+            // Recursive IIFE for traversal and counting of height levels. 
+            (function traverseTheTree(node = this.treeRoot) {
+                if (node.inputData == givenValue) {
+                    counterVar = 0
+                    return
+                } else {
+                    // Increment counter and call the func again.
+                    counterVar++
+                    traverseTheTree(node.leftChild)
+                    traverseTheTree(node.rightChild)
+                }
+            })()
+        }
+        // Return the counter value to the user. 
+        return counterVar
+    }
+
 }
 
 
