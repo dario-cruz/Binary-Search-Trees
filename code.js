@@ -441,7 +441,20 @@ class tree {
             this.buildTree()
         }
     }
-
+    // Create a function that allows for a visual representation of the BST to be logged in the console. 
+    printMyTree(node = this.treeRoot, prefix = '', isLeft = true) {
+        if (!node) {
+        console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exsist.')
+        return
+        }
+        if (node.rightChild !== null) {
+            printMyTree(node.rightChild, `${prefix}${isLeft ? "|   " : "    "}`, false)
+        }
+        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.inputData}`)
+        if (node.leftChild !== null) {
+            printMyTree(node.leftChild, `${prefix}${isLeft ? "    " : "|   "}`, true)
+        }
+    }
 }
 
 
@@ -491,17 +504,3 @@ function merge(left, right) {
     return resultArray
 }
 
-// Create a function that allows for a visual representation of the BST to be logged in the console. 
-function printMyTree(node, prefix = '', isLeft = true) {
-    if (!node) {
-        console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exsist.')
-        return
-    }
-    if (node.rightChild !== null) {
-        printMyTree(node.rightChild, `${prefix}${isLeft ? "|   " : "    "}`, false)
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.inputData}`)
-    if (node.leftChild !== null) {
-        printMyTree(node.leftChild, `${prefix}${isLeft ? "    " : "|   "}`, true)
-    }
-}
