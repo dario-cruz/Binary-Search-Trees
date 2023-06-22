@@ -389,7 +389,26 @@ class tree {
         // Return the counter value to the user. 
         return counterVar
     }
-
+    // Method for calculating the height of the BST.
+    getHeight(node = this.treeRoot) {
+        // If there is no node or tree that has been built, return -1 value to indicate.
+        if (node == null) {
+            return -1
+        } else {
+            // Recursively run through tree and find the max height.
+            let leftHeight = this.findHeight(node.leftChild)
+            let rightHeight = this.findHeight(node.rightChild)
+            // Return the max height wether it be left or right side and add 1.
+            return Math.max(leftHeight, rightHeight) + 1
+        }
+    }
+    // Create a method that returns the height of the node that matches the given value. 
+    findNodeHeight(value) {
+        // Find and store the target node with search class method. 
+        let targetNode = this.search(value)
+        // Return the height of the target node. 
+        return this.findHeight(targetNode)
+    }
 }
 
 
