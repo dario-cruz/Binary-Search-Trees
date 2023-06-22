@@ -409,6 +409,26 @@ class tree {
         // Return the height of the target node. 
         return this.findHeight(targetNode)
     }
+
+    // Create a method that checks the tree and tells if it is balanced or not. 
+    isBalanced(node = this.treeRoot) {
+        if (!node) {
+            // Let the user know that the true val was returned because the node was not found.
+            console.log('No node was found.')
+            return true
+        }
+        // Get the height vals of the left and right sub-trees.
+        leftHeight = this.getHeight(node.leftChild)
+        rightHeight = this.getHeight(node.rightChild)
+        // Compare the difference, if it is less then 1 AND the left and right sub-trees are also balanced, then the entire tree is considered balanced.
+        if (Math.abs(leftHeight - rightHeight) <= 1 && this.isBalanced(node.leftChild) && this.isBalanced(node.rightChild)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    
 }
 
 
