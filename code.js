@@ -248,7 +248,7 @@ class tree {
     }
 
     // In order traversal works by traversing the left tree first, then visiting the root again, then traversing all nodes on the right side of the tree.
-    inOrder(node = this.treeRoot, givenFunc) {
+    inOrder(givenFunc, node = this.treeRoot) {
         // Init the queue for all the values to be run on the func.
         let inOrderQueue = []
         
@@ -428,7 +428,20 @@ class tree {
         }
     }
 
-    
+    // Create a class method that checks is the tree is balanced, if it is not it will re-balance the tree.
+    rebalanceTree(node = this.treeRoot) {
+        if (!node) {
+            console.log('Node not found!')
+        } else if (this.isBalanced(this.treeRoot) == false) {
+            // Traverse the tree inOrder and queue up all values.
+            let rebalanceQueue = this.inOrder(this.treeRoot)
+            // Set the rebalanceQueue as the given array for the tree.
+            this.givenArray = rebalanceQueue
+            // Re-build the tree. 
+            this.buildTree()
+        }
+    }
+
 }
 
 
