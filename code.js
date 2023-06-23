@@ -43,13 +43,14 @@ class treeNode {
 class tree {
     constructor(givenArray) {
         // Sort the givenArray in sequential order. 
-        this.givenArray = mergeSort(this.givenArray)
+        this.givenArray = mergeSort(givenArray)
         this.treeRoot = null
         this.buildStatus = false
     }
     // Write a function which takes an array of data and turns it into a balanced binary tree,
     // full of Node objects.
     buildTree() {
+        console.log(Array.isArray(this.givenArray))
         // Process the array and find the mid and root of the Binary Search Tree.
         this.treeRoot = processData(this.givenArray, 0, this.givenArray.length - 1)
         // After tree is built update buildstatus value.
@@ -62,11 +63,12 @@ class tree {
             }
             // Find and store mid point so that we may reference it on recursive call.
             let mid = Math.floor((start + end) / 2)
+            
             // Create the new node which will be the center of the start and mid points.
-            let node = new treeNode(this.givenArray[mid])
+            let node = new treeNode(array[mid])
             // Recursive iteration through array to build tree nodes and children.
-            treeNode.leftChild = this.processData(this.givenArray. start, mid - 1)
-            treeNode.rightChild = this.processData(this.givenArray, mid + 1, end)
+            treeNode.leftChild = processData(array, start, mid - 1)
+            treeNode.rightChild = processData(array, mid + 1, end)
             // Return the node with its children.
             return treeNode
         }
@@ -444,15 +446,15 @@ class tree {
     // Create a function that allows for a visual representation of the BST to be logged in the console. 
     printMyTree(node = this.treeRoot, prefix = '', isLeft = true) {
         if (!node) {
-        console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exsist.')
-        return
+            console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exsist.')
+            return
         }
         if (node.rightChild !== null) {
-            printMyTree(node.rightChild, `${prefix}${isLeft ? "|   " : "    "}`, false)
+            this.printMyTree(node.rightChild, `${prefix}${isLeft ? "|   " : "    "}`, false)
         }
         console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.inputData}`)
         if (node.leftChild !== null) {
-            printMyTree(node.leftChild, `${prefix}${isLeft ? "    " : "|   "}`, true)
+            this.printMyTree(node.leftChild, `${prefix}${isLeft ? "    " : "|   "}`, true)
         }
     }
 }
@@ -472,7 +474,7 @@ function mergeSort(providedArray) {
     let right = mergeSort(providedArray.slice(mid))
 
     // Merge the halves in a sorted manner.
-    return 
+    return merge(left,right)
 }
 
 function merge(left, right) {
@@ -500,7 +502,19 @@ function merge(left, right) {
         resultArray.push(right[rightCounter])
         rightCounter++
     }
-    // Return the completely sorted array. 
+    
     return resultArray
 }
+
+// Testing the code.
+let myArray = [11,50,48,8,1,5,6,7]
+let myTree = new tree(myArray)
+myTree.buildTree()
+console.log(myTree.treeRoot)
+myTree.printMyTree()
+
+// console.log(mergeSort(myArray))
+// console.log(typeof(myArray))
+// let myTree = new tree(myArray)
+// myTree.buildTree()
 
