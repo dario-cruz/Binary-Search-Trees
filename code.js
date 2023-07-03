@@ -446,7 +446,7 @@ class tree {
     // Create a function that allows for a visual representation of the BST to be logged in the console. 
     printMyTree(node = this.treeRoot, prefix = '', isLeft = true) {
         if (!node) {
-            console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exsist.')
+            console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exist.')
             return
         }
         if (node.rightChild !== null) {
