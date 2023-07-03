@@ -67,10 +67,10 @@ class tree {
             // Create the new node which will be the center of the start and mid points.
             let node = new treeNode(array[mid])
             // Recursive iteration through array to build tree nodes and children.
-            treeNode.leftChild = processData(array, start, mid - 1)
-            treeNode.rightChild = processData(array, mid + 1, end)
+            node.leftChild = processData(array, start, mid - 1)
+            node.rightChild = processData(array, mid + 1, end)
             // Return the node with its children.
-            return treeNode
+            return node
         }
     }
     search(term) {
@@ -510,7 +510,7 @@ function merge(left, right) {
 let myArray = [11,50,48,8,1,5,6,7]
 let myTree = new tree(myArray)
 myTree.buildTree()
-console.log(myTree.treeRoot)
+console.log(myTree.treeRoot.leftChild)
 myTree.printMyTree()
 
 // console.log(mergeSort(myArray))
