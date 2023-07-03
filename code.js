@@ -113,10 +113,10 @@ class tree {
                 compareAndInsert(node.rightChild)
             // if the given num is less and the node has no children insert.
             } else if (term < node.inputData && node.leftChild == null) {
-                node.leftChild = new node(term)
+                node.leftChild = new treeNode(term)
             // if the given num is more and the node has no children insert.
             } else if (term > node.inputData && node.rightChild == null) {
-                node.rightChild = new node(term)
+                node.rightChild = new treeNode(term)
             } else {
                 console.log('Huh, not sure how we got here.... Fix the code bruh.')
                 return
@@ -510,8 +510,10 @@ function merge(left, right) {
 let myArray = [11,50,48,8,1,5,6,7]
 let myTree = new tree(myArray)
 myTree.buildTree()
-console.log(myTree.treeRoot.leftChild)
+console.log(myTree.treeRoot)
 myTree.printMyTree()
+myTree.insert(4)
+// myTree.printMyTree()
 
 // console.log(mergeSort(myArray))
 // console.log(typeof(myArray))
