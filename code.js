@@ -400,8 +400,8 @@ class tree {
             return -1
         } else {
             // Recursively run through tree and find the max height.
-            let leftHeight = this.findHeight(node.leftChild)
-            let rightHeight = this.findHeight(node.rightChild)
+            let leftHeight = this.getHeight(node.leftChild)
+            let rightHeight = this.getHeight(node.rightChild)
             // Return the max height wether it be left or right side and add 1.
             return Math.max(leftHeight, rightHeight) + 1
         }
@@ -411,7 +411,7 @@ class tree {
         // Find and store the target node with search class method. 
         let targetNode = this.search(value)
         // Return the height of the target node. 
-        return this.findHeight(targetNode)
+        return this.getHeight(targetNode)
     }
 
     // Create a method that checks the tree and tells if it is balanced or not. 
@@ -514,13 +514,9 @@ let myTree = new tree(myArray)
 myTree.buildTree()
 console.log(myTree.treeRoot)
 prettyPrint(myTree.treeRoot)
-console.log('-----------------')
-myTree.insert(2)
-console.log(myTree.treeRoot)
-prettyPrint(myTree.treeRoot)
-
-// console.log(mergeSort(myArray))
-// console.log(typeof(myArray))
-// let myTree = new tree(myArray)
-// myTree.buildTree()
+console.log(myTree.getHeight())
+// console.log('-----------------')
+// myTree.insert(2)
+// console.log(myTree.treeRoot)
+// prettyPrint(myTree.treeRoot)
 
