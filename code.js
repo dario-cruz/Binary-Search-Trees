@@ -113,10 +113,12 @@ class tree {
                 compareAndInsert(node.rightChild)
             // if the given num is less and the node has no children insert.
             } else if (term < node.inputData && node.leftChild == null) {
-                node.leftChild = new treeNode(term)
+                let newNode = new treeNode(term)
+                node.leftChild = newNode
             // if the given num is more and the node has no children insert.
             } else if (term > node.inputData && node.rightChild == null) {
-                node.rightChild = new treeNode(term)
+                let newNode = new treeNode(term)
+                node.rightChild = newNode
             } else {
                 console.log('Huh, not sure how we got here.... Fix the code bruh.')
                 return
@@ -511,8 +513,9 @@ let myArray = [11,50,48,8,1,5,6,7]
 let myTree = new tree(myArray)
 myTree.buildTree()
 console.log(myTree.treeRoot)
-myTree.insert(2)
+prettyPrint(myTree.treeRoot)
 console.log('-----------------')
+myTree.insert(2)
 console.log(myTree.treeRoot)
 prettyPrint(myTree.treeRoot)
 
