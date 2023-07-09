@@ -443,22 +443,22 @@ class tree {
             this.buildTree()
         }
     }
-    // Create a function that allows for a visual representation of the BST to be logged in the console. 
-    printMyTree(node = this.treeRoot, prefix = '', isLeft = true) {
-        if (!node) {
-            console.log('Hey my person, I think you forgot to put the node in the args, or the node does not exist.')
-            return
-        }
-        if (node.rightChild !== null) {
-            this.printMyTree(node.rightChild, `${prefix}${isLeft ? "|   " : "    "}`, false)
-        }
-        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.inputData}`)
-        if (node.leftChild !== null) {
-            this.printMyTree(node.leftChild, `${prefix}${isLeft ? "    " : "|   "}`, true)
-        }
-    }
 }
 
+// Odin provided function for printing BST Tree.
+const prettyPrint = (node, prefix = "", isLeft = true) => {
+    if (node === null) {
+      return;
+    }
+    if (node.rightChild !== null) {
+      prettyPrint(node.rightChild, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.inputData}`);
+    if (node.leftChild !== null) {
+      prettyPrint(node.leftChild, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+};
+  
 
 // Arrays given as arguments may be un-sorted so lets sort them using mergeSort.
 function mergeSort(providedArray) {
@@ -511,11 +511,11 @@ let myArray = [11,50,48,8,1,5,6,7]
 let myTree = new tree(myArray)
 myTree.buildTree()
 console.log(myTree.treeRoot)
-myTree.printMyTree()
 myTree.insert(2)
-// myTree.printMyTree()
-
+console.log('-----------------')
 console.log(myTree.treeRoot)
+prettyPrint(myTree.treeRoot)
+
 // console.log(mergeSort(myArray))
 // console.log(typeof(myArray))
 // let myTree = new tree(myArray)
