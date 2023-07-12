@@ -74,24 +74,30 @@ class tree {
         }
     }
     search(term) {
+        // Define a variable to hold the node to be found
+        let returningNode
         // If the tree has not been built yet then return null
         if (this.treeRoot === null) {
             console.log('Oooops looks like the item was not found.')
             return null
         } else {
-            recursiveSearchPattern(this.treeRoot)
+            returningNode = recursiveSearchPattern(this.treeRoot)
         }
         // Recursive func for searching through BST.
         // Compares the search term and then iterates through the tree.
         function recursiveSearchPattern(node) {
-            if (node.inputData === term) {
+            if (node.inputData == term) {
                 return node
-            } else if (term < node.inputData) {
+            } else if (term < node.inputData && node.leftChild !== null) {
                 recursiveSearchPattern(node.leftChild)
-            } else {
+            } else if (term > node.inputData && node.rightChild !== null) {
                 recursiveSearchPattern(node.rightChild)
+            } else {
+                console.log('Matching Data note found in tree.')
+                return
             }
         }
+        return returningNode
     }
     
     insert(term) {
@@ -512,9 +518,10 @@ function merge(left, right) {
 let myArray = [11,50,48,8,1,5,6,7]
 let myTree = new tree(myArray)
 myTree.buildTree()
-console.log(myTree.treeRoot)
-prettyPrint(myTree.treeRoot)
+// console.log(myTree.treeRoot)
+// prettyPrint(myTree.treeRoot)
 console.log(myTree.getHeight())
+console.log(myTree.search(8))
 // console.log('-----------------')
 // myTree.insert(2)
 // console.log(myTree.treeRoot)
